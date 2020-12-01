@@ -20,8 +20,8 @@ function setup() {
     textSize(width / 10);
     textAlign(CENTER, CENTER);
     textFont("Nerko One")
-    for (var x = 0; x < width; x += 50) {
-        for (var y = 0; y < height; y += 50) {
+    for (var x = 0; x < width; x += 25) {
+        for (var y = 0; y < height; y += 25) {
             arr.push({ x, y });
         }
     }
@@ -40,8 +40,17 @@ function draw() {
         let level = noise(i.x * 0.001, i.y * 0.001, frameCount * 0.009);
         let c = map(level, 0, 1, 0, colorArray.length);
         fill(colorArray[~~(c)])
-        rect(i.x, i.y, 50, 50)
+        rect(i.x, i.y, 25, 25)
     }
     fill("white")
     text(`${h.pad()} : ${m.pad()} : ${s.pad()} `, width * 0.5, height * .5);
+}
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+    arr = [];
+    for (var x = 0; x < width; x += 25) {
+        for (var y = 0; y < height; y += 25) {
+            arr.push({ x, y });
+        }
+    }
 }
